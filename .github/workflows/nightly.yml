@@ -16,7 +16,7 @@ env:
 
 
 jobs:
-  build_and_push:
+  base:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -90,7 +90,6 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
 
-
   onbuild:
     runs-on: ubuntu-latest
     permissions:
@@ -99,6 +98,8 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+
+    needs: base
 
     steps:
       - name: Checkout repository
@@ -149,6 +150,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: TOOLCHAIN=nightly
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker

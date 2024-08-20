@@ -98,6 +98,8 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
+    needs: build
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
