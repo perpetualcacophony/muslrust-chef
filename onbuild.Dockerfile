@@ -1,5 +1,5 @@
 ARG TOOLCHAIN=stable 
-FROM perpetualcacophony/muslrust-chef:$TOOLCHAIN
+FROM ghcr.io/perpetualcacophony/muslrust-chef:$TOOLCHAIN
 ARG TOOLCHAIN
 
 ONBUILD WORKDIR /chef
