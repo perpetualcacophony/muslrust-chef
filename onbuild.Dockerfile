@@ -2,6 +2,7 @@ ARG TOOLCHAIN=stable
 FROM ghcr.io/perpetualcacophony/muslrust-chef:$TOOLCHAIN
 ARG TOOLCHAIN=stable
 
+ONBUILD ARG TOOLCHAIN=$TOOLCHAIN
 ONBUILD WORKDIR /chef
 ONBUILD COPY . .
 ONBUILD RUN cargo +$TOOLCHAIN chef prepare --recipe-path recipe.json
