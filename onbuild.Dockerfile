@@ -1,6 +1,6 @@
 ARG TOOLCHAIN=stable 
 FROM ghcr.io/perpetualcacophony/muslrust-chef:$TOOLCHAIN
-ARG TOOLCHAIN
+ARG TOOLCHAIN=stable
 
 ONBUILD WORKDIR /chef
 ONBUILD COPY . .
