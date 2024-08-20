@@ -98,7 +98,7 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
-    needs: build
+    needs: base
 
     steps:
       - name: Checkout repository
