@@ -67,12 +67,12 @@ jobs:
 
       # Copy dockerfile if building base image
       - name: Copy dockerfile
-        if: ${{ matrix.tag == "stable" }}
+        if: ${{ matrix.tag == 'stable' }}
         run: cp ./base_dockerfiles/base.Dockerfile ./Dockerfile
 
       # Construct dockerfile from script if building onbuild image
       - name: Copy dockerfile
-        if: ${{ matrix.tag == "stable-onbuild" }}
+        if: ${{ matrix.tag == 'stable-onbuild' }}
         run: ./onbuild.sh stable > ./Dockerfile
 
       # Build and push Docker image with Buildx (don't push on PR)
